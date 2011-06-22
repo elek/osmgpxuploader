@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="visibility">
+        <item>public</item>
+        <item>identifiable</item>
+        <item>trackable</item>        
+        <item>private</item>
+    </string-array>
+    
+</resources>
