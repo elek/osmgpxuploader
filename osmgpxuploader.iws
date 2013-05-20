@@ -23,45 +23,48 @@
       </GlobalState>
     </option>
   </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/net/anzix/osm/upload/CustomAdapter.java" line="25" mnemonic="1" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="d6649e8a-499d-4dea-96d2-c66adcf4f8ea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/CustomAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/DirSource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/GpxList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/GpxUploadApplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/SelectionMode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/anzix/osm/upload/SourceList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/gpx_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/gpx_list.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/menu/gpxlist_menu.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/source_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/source_list.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/menu/sourcelist_menu.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/local.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/net/anzix/osm/upload/FileDialog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/net/anzix/osm/upload/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/net/anzix/osm/upload/Preferences.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable-hdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable-ldpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable-mdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable/file.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/drawable/folder.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/about.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/file_dialog_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/file_dialog_row.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/layout/settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/values/arrays.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/icon/icon.odg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/icon/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable/file.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable/folder.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/about.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/file_dialog_main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/file_dialog_row.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/gpx_item.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/gpx_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/source_item.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/source_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/menu/gpxlist_menu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/menu/sourcelist_menu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/values/arrays.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/screenshots/settings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/screenshots/upload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/CustomAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/DirSource.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/FileDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/GpxList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/GpxUploadApplication.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/Preferences.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/SelectionMode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/SourceList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/UploadForm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/DaoMaster.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/DaoSession.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/Gpx.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/GpxDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/Source.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/net/anzix/osm/upload/data/SourceDao.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default.properties" afterPath="$PROJECT_DIR$/default.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/osmgpxuploader.iws" afterPath="$PROJECT_DIR$/osmgpxuploader.iws" />
     </list>
     <ignored path="osmgpxuploader.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,115 +145,7 @@
     <favorites_list name="osmgpxuploader" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="gpx_list.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/gpx_list.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="129" selection-start="653" selection-end="653" vertical-scroll-proportion="-8.4">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gpx_item.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/gpx_item.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="42" selection-start="1534" selection-end="1534" vertical-scroll-proportion="-0.6">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GpxList.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/GpxList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="34" selection-start="2536" selection-end="2753" vertical-scroll-proportion="0.7823129">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SourceList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/SourceList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="43" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="20" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gpxlist_menu.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/menu/gpxlist_menu.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="49" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="source_list.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/source_list.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="74" selection-start="687" selection-end="687" vertical-scroll-proportion="-7.2">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file_dialog_row.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/file_dialog_row.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -359,60 +254,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="osmgpxuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -602,7 +443,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="31" width="1608" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6712517" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32882884" sideWeight="0.6712517" order="2" side_tool="false" content_ui="tabs" />
@@ -621,8 +462,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24903475" sideWeight="0.6712517" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24903475" sideWeight="0.6712517" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -708,20 +549,14 @@
     <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/GpxUploadApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="41" selection-start="1454" selection-end="1454" vertical-scroll-proportion="0.3982684">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#616#627#0" expanded="true" />
-            <element signature="e#1736#1749#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/CustomAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="29" selection-start="902" selection-end="902" vertical-scroll-proportion="0.4069264">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -751,16 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/gpx_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="42" selection-start="1534" selection-end="1534" vertical-scroll-proportion="-0.6">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -770,16 +595,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/SourceList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="43" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="41" column="43" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.41558442">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/gpx_list.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="129" selection-start="653" selection-end="653" vertical-scroll-proportion="-8.4">
+        <state line="14" column="129" selection-start="653" selection-end="653" vertical-scroll-proportion="0.4805492">
           <folding />
         </state>
       </provider>
@@ -824,11 +647,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/anzix/osm/upload/GpxList.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/gpx_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="34" selection-start="2536" selection-end="2753" vertical-scroll-proportion="0.7823129">
+        <state line="36" column="42" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.034324944">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>
