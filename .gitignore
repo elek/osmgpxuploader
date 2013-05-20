@@ -1,2 +1,9 @@
+out
+#*
+\#*\#
+local.properties*
 bin
 gen
+build
+.idea
+*.iml

@@ -1,0 +1,98 @@
+21:50:27.200 [DEBUG] [org.gradle.logging.internal.DefaultLoggingConfigurer] Finished configuring with level: DEBUG, configurers: [org.gradle.logging.internal.OutputEventRenderer@cb6009, org.gradle.logging.internal.logback.LogbackLoggingConfigurer@e28b9, org.gradle.logging.internal.JavaUtilLoggingConfigurer@193a66f]
+21:50:27.656 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+21:50:27.661 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+21:50:27.700 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+21:50:27.704 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Attempting to connect to [cbe0fb1e-f40c-4e39-ae73-fed4ad1596e7 port:34802, addresses:[/0:0:0:0:0:0:0:1%1, /127.0.0.1]].
+21:50:27.705 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Trying to connect to address /0:0:0:0:0:0:0:1%1.
+21:50:27.711 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpOutgoingConnector] Connected to address /0:0:0:0:0:0:0:1%1.
+21:50:27.731 [INFO] [org.gradle.launcher.daemon.client.DaemonClient] Connected to the daemon. Dispatching Build{id=a19004e3-1be7-4c14-8789-74b5ca42bbb4.1, currentDir=/home/eszti/projects/osmgpxuploader} request.
+21:50:27.732 [DEBUG] [org.gradle.launcher.daemon.client.DaemonClientConnection] thread 1: dispatching class org.gradle.launcher.daemon.protocol.Build
+21:50:27.800 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 507). The daemon log file: /home/eszti/.gradle/daemon/1.5/daemon-507.out.log
+21:50:27.808 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=b4864482-db1f-49e8-871f-3071411073ef,javaHome=/home/eszti/progs/jdk1.6.0_31,daemonRegistryDir=/home/eszti/.gradle/daemon,pid=507,idleTimeout=10800000,daemonOpts=-XX:MaxPermSize=256m,-XX:+HeapDumpOnOutOfMemoryError,-Xmx1024m,-Dfile.encoding=UTF-8]
+21:50:27.834 [DEBUG] [org.gradle.logging.internal.DefaultLoggingConfigurer] Finished configuring with level: DEBUG, configurers: [org.gradle.logging.internal.OutputEventRenderer@1e4f7c2, org.gradle.logging.internal.logback.LogbackLoggingConfigurer@145f0e3, org.gradle.logging.internal.JavaUtilLoggingConfigurer@c9d92c]
+21:50:27.835 [INFO] [org.gradle.BuildLogger] Starting Build
+21:50:27.836 [DEBUG] [org.gradle.BuildLogger] Gradle user home: /home/eszti/.gradle
+21:50:27.836 [DEBUG] [org.gradle.BuildLogger] Current dir: /home/eszti/projects/osmgpxuploader
+21:50:27.837 [DEBUG] [org.gradle.BuildLogger] Settings file: null
+21:50:27.838 [DEBUG] [org.gradle.BuildLogger] Build file: null
+21:50:27.855 [DEBUG] [org.gradle.initialization.BuildSourceBuilder] Starting to build the build sources.
+21:50:27.856 [DEBUG] [org.gradle.initialization.BuildSourceBuilder] Gradle source dir does not exist. We leave.
+21:50:27.857 [DEBUG] [org.gradle.initialization.DefaultGradlePropertiesLoader] Found env project properties: []
+21:50:27.863 [DEBUG] [org.gradle.initialization.DefaultGradlePropertiesLoader] Found system project properties: []
+21:50:27.868 [DEBUG] [org.gradle.api.internal.artifacts.mvnsettings.DefaultLocalMavenRepositoryLocator] No local repository in Settings file defined. Using default path: /home/eszti/.m2/repository
+21:50:27.897 [DEBUG] [org.gradle.logging.internal.DefaultLoggingConfigurer] Finished configuring with level: DEBUG, configurers: [org.gradle.logging.internal.OutputEventRenderer@1e4f7c2, org.gradle.logging.internal.logback.LogbackLoggingConfigurer@145f0e3, org.gradle.logging.internal.JavaUtilLoggingConfigurer@c9d92c]
+21:50:27.898 [DEBUG] [org.gradle.logging.internal.DefaultLoggingConfigurer] Finished configuring with level: DEBUG, configurers: [org.gradle.logging.internal.OutputEventRenderer@1e4f7c2, org.gradle.logging.internal.logback.LogbackLoggingConfigurer@145f0e3, org.gradle.logging.internal.JavaUtilLoggingConfigurer@c9d92c]
+21:50:27.899 [DEBUG] [org.gradle.initialization.ScriptEvaluatingSettingsProcessor] Timing: Processing settings took: 0.035 secs
+21:50:27.900 [INFO] [org.gradle.BuildLogger] Settings evaluated using empty settings script.
+21:50:27.906 [DEBUG] [org.gradle.initialization.ProjectPropertySettingBuildLoader] Looking for project properties from: /home/eszti/projects/osmgpxuploader/gradle.properties
+21:50:27.907 [DEBUG] [org.gradle.initialization.ProjectPropertySettingBuildLoader] project property file does not exists. We continue!
+21:50:27.908 [INFO] [org.gradle.BuildLogger] Projects loaded. Root project using build file '/home/eszti/projects/osmgpxuploader/build.gradle'.
+21:50:27.908 [INFO] [org.gradle.BuildLogger] Included projects: [root project 'osmgpxuploader']
+21:50:27.909 [INFO] [org.gradle.configuration.BuildScriptProcessor] Evaluating root project 'osmgpxuploader' using build file '/home/eszti/projects/osmgpxuploader/build.gradle'.
+21:50:27.911 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on buildscript class cache for build file '/home/eszti/projects/osmgpxuploader/build.gradle' (/home/eszti/.gradle/caches/1.5/scripts/build_6enic1j9qdivasg1hfgukao9r0/ProjectScript/buildscript).
+21:50:27.912 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+21:50:27.938 [DEBUG] [org.gradle.logging.internal.DefaultLoggingConfigurer] Finished configuring with level: DEBUG, configurers: [org.gradle.logging.internal.OutputEventRenderer@1e4f7c2, org.gradle.logging.internal.logback.LogbackLoggingConfigurer@145f0e3, org.gradle.logging.internal.JavaUtilLoggingConfigurer@c9d92c]
+21:50:27.940 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on artifact cache (/home/eszti/.gradle/caches/artifacts-23).
+21:50:27.940 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+21:50:27.941 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DefaultDependencyResolver] Resolving configuration ':classpath'
+21:50:27.943 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.default.settings.dir' to 'jar:file:/usr/share/java/gradle/lib/ivy-2.2.0.jar!/org/apache/ivy/core/settings'
+21:50:27.943 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.basedir' to '/home/eszti/projects/osmgpxuploader/.'
+21:50:27.944 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.default.conf.dir' to 'jar:file:/usr/share/java/gradle/lib/ivy-2.2.0.jar!/org/apache/ivy/core/settings'
+21:50:27.945 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'jna.platform.library.path' to '/usr/lib:/lib'
+21:50:27.946 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.runtime.name' to 'Java(TM) SE Runtime Environment'
+21:50:27.947 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.boot.library.path' to '/home/eszti/progs/jdk1.6.0_31/jre/lib/i386'
+21:50:27.948 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.version' to '20.6-b01'
+21:50:27.949 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.vendor' to 'Sun Microsystems Inc.'
+21:50:27.949 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor.url' to 'http://java.sun.com/'
+21:50:27.950 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'path.separator' to ':'
+21:50:27.951 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.name' to 'Java HotSpot(TM) Server VM'
+21:50:27.952 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.encoding.pkg' to 'sun.io'
+21:50:27.953 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.country' to 'US'
+21:50:27.953 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.java.launcher' to 'SUN_STANDARD'
+21:50:27.954 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.os.patch.level' to 'unknown'
+21:50:27.955 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.name' to 'Java Virtual Machine Specification'
+21:50:27.956 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.dir' to '/home/eszti/projects/osmgpxuploader'
+21:50:27.956 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.runtime.version' to '1.6.0_31-b04'
+21:50:27.957 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.awt.graphicsenv' to 'sun.awt.X11GraphicsEnvironment'
+21:50:27.958 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.endorsed.dirs' to '/home/eszti/progs/jdk1.6.0_31/jre/lib/endorsed'
+21:50:27.959 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.arch' to 'i386'
+21:50:27.959 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.io.tmpdir' to '/tmp'
+21:50:27.960 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'line.separator' to '
+'
+21:50:27.961 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'org.gradle.appname' to 'gradle'
+21:50:27.962 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.vendor' to 'Sun Microsystems Inc.'
+21:50:27.963 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.name' to 'Linux'
+21:50:27.964 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'jna.boot.library.path' to '/home/eszti/.gradle/native/jna/linux-i386'
+21:50:27.964 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.jnu.encoding' to 'UTF-8'
+21:50:27.965 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.library.path' to '/home/eszti/progs/jdk1.6.0_31/jre/lib/i386/server:/home/eszti/progs/jdk1.6.0_31/jre/lib/i386:/home/eszti/progs/jdk1.6.0_31/jre/../lib/i386::/opt/opencascade/lib:/usr/java/packages/lib/i386:/lib:/usr/lib'
+21:50:27.966 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.name' to 'Java Platform API Specification'
+21:50:27.967 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.class.version' to '50.0'
+21:50:27.968 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.management.compiler' to 'HotSpot Tiered Compilers'
+21:50:27.968 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'os.version' to '3.9.2-1-ARCH'
+21:50:27.969 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.home' to '/home/eszti'
+21:50:27.970 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.timezone' to 'Europe/Zurich'
+21:50:27.971 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.awt.printerjob' to 'sun.print.PSPrinterJob'
+21:50:27.971 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.encoding' to 'UTF-8'
+21:50:27.972 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.version' to '1.6'
+21:50:27.973 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.name' to 'eszti'
+21:50:27.974 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.class.path' to '/usr/share/java/gradle/lib/gradle-launcher-1.5.jar'
+21:50:27.974 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.specification.version' to '1.0'
+21:50:27.975 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.java.command' to 'org.gradle.launcher.daemon.bootstrap.GradleDaemon 1.5 /home/eszti/.gradle/daemon 10800000 b4864482-db1f-49e8-871f-3071411073ef -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -Xmx1024m -Dfile.encoding=UTF-8'
+21:50:27.976 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.home' to '/home/eszti/progs/jdk1.6.0_31/jre'
+21:50:27.977 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.arch.data.model' to '32'
+21:50:27.977 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'user.language' to 'en'
+21:50:27.978 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.specification.vendor' to 'Sun Microsystems Inc.'
+21:50:27.979 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vm.info' to 'mixed mode'
+21:50:27.979 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.version' to '1.6.0_31'
+21:50:27.980 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.ext.dirs' to '/home/eszti/progs/jdk1.6.0_31/jre/lib/ext:/usr/java/packages/lib/ext'
+21:50:27.981 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.boot.class.path' to '/home/eszti/progs/jdk1.6.0_31/jre/lib/resources.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/rt.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/sunrsasign.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/jsse.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/jce.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/charsets.jar:/home/eszti/progs/jdk1.6.0_31/jre/lib/modules/jdk.boot.jar:/home/eszti/progs/jdk1.6.0_31/jre/classes'
+21:50:27.982 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor' to 'Sun Microsystems Inc.'
+21:50:27.983 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'file.separator' to '/'
+21:50:27.983 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'java.vendor.url.bug' to 'http://java.sun.com/cgi-bin/bugreport.cgi'
+21:50:27.984 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.io.unicode.encoding' to 'UnicodeLittle'
+21:50:27.985 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.cpu.endian' to 'little'
+21:50:27.985 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'sun.cpu.isalist' to ''
+21:50:27.986 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.cache.dir' to '/home/eszti/.gradle/caches/artifacts-23/ivy'
+21:50:27.987 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.IvyLoggingAdaper] setting 'ivy.log.modules.in.use' to 'false'
+21:50:27.989 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting configuration #osmgpxuploader;unspecified(classpath).
+21:50:27.990 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.DependencyGraphBuilder] Visiting dependency #osmgpxuploader;unspecified(classpath) -> org.gradle.api.plugins:gradle-android-plugin:1.2.2-SNAPSHOT([default])

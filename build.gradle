@@ -1,25 +1,68 @@
 buildscript {
-    repositories {
-        maven { url 'http://repo1.maven.org/maven2' }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
-    }
+  repositories {
+     mavenCentral();
+     mavenRepo url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+  }
+  dependencies {
+     classpath 'org.gradle.api.plugins:gradle-android-plugin:1.2.2-SNAPSHOT'
+  }
 }
 
+repositories {
+   mavenCentral();
+}
+apply plugin: 'java'
+apply plugin: 'project-report'
 apply plugin: 'android'
+apply plugin: 'idea'
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src'
+    }
+  }
+}    
 
 dependencies {
-    compile files('libs/httpclient-4.1.1.jar')
-    compile files('libs/httpmime-4.1.1.jar')
+   compile fileTree(dir: 'libs', include: '*.jar')
+}
+   
+
+version = "1.0.0"
+
+def keyProps = new Properties()
+
+//create this file if you would like to use production keystore 
+keyFile = new File("/home/eszti/.androidKey")
+if (keyFile.exists()) {
+   file(keyFile).withReader { reader ->     
+     keyProps.load(reader) 
+     properties.putAll(keyProps)
+   } 
+} else {
+   keyProps.put('store','devkeyring')
+   keyProps.put('storepwd','devdev')
+   keyProps.put('keypwd','devdev')
 }
 
-android {
-    compileSdkVersion 17
-    buildToolsVersion "17.0.0"
+println keyProps.get('key')
 
-    defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 16
-    }
+androidSignAndAlign {
+	keyStore = keyProps.get('store')
+	keyAlias = 'android'
+	keyStorePassword = keyProps.get('storepwd')
+	keyAliasPassword = keyProps.get('keypwd')
+}
+// Configure the filtering of resources with properties from the Gradle's project scope (2)
+processResources {
+	expand (project.properties)
+}
+
+task configureDebug << {
+    jar.classifier = "debug"
+}
+
+task configureRelease << {
+    proguard.enabled = true
 }
