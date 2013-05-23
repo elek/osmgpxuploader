@@ -1,0 +1,12 @@
+out
+#*
+\#*\#
+local.properties*
+bin
+gen
+build
+.idea
+*.iml
+*.ipr
+*.iws
+build.properties
