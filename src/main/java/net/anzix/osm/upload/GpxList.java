@@ -29,12 +29,6 @@ public class GpxList extends ListActivity {
         app = (GpxUploadApplication) getApplication();
         app.sync();
         setContentView(R.layout.gpx_list);
-//        Gpx gpx = new Gpx();
-//        gpx.setName("test.gpx");
-//        gpx.setPath("/sdcard/test/asd");
-//        gpx.setCreated(new Date());
-//        gpx.setType("file");
-//        dao.insert(gpx);
 
         fillData();
 
@@ -74,19 +68,18 @@ public class GpxList extends ListActivity {
                     Log.e("OSM", "selected: " + info.id);
                     Gpx gpx = gpxes.get((int) info.id);
                     Intent i = new Intent(this, UploadForm.class);
-
-                    i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(gpx.getLocation())));
+                    i.putExtra("id", gpx.getId());
                     startActivityForResult(i, 0);
                     return true;
 
             }
         } else if (featureId == Window.FEATURE_OPTIONS_PANEL) {
             switch (item.getItemId()) {
-//                case R.id.delete_all:
-//                    app.getDaoSession().getGpxDao().deleteAll();
-//                    adapter.clear();
-//                    adapter.notifyDataSetChanged();
-//                    return true;
+                case R.id.delete_all:
+                    app.getDaoSession().getGpxDao().deleteAll();
+                    adapter.clear();
+                    adapter.notifyDataSetChanged();
+                    return true;
                 case R.id.sources:
                     startActivity(new Intent(this, SourceList.class));
                     return true;
@@ -108,9 +101,9 @@ public class GpxList extends ListActivity {
     }*/
 
     private void fillData() {
-        GpxUploadApplication app = (GpxUploadApplication) getApplication();
+
         GpxDao dao = app.getDaoSession().getGpxDao();
-        gpxes = dao.queryBuilder().orderDesc(GpxDao.Properties.Created).list();
+        gpxes = dao.queryBuilder().orderDesc(GpxDao.Properties.Created).orderAsc(GpxDao.Properties.Created).list();
         setListAdapter(adapter = new CustomAdapter<Gpx>(this, R.layout.gpx_list, gpxes) {
             protected int getItemLayout() {
                 return R.layout.gpx_item;
@@ -128,7 +121,7 @@ public class GpxList extends ListActivity {
                     holder.item3.setVisibility(View.INVISIBLE);
                 }
                 GpxUploadApplication app = (GpxUploadApplication) getApplication();
-                holder.item2.setText(custom.getType() + ":" + app.getDisplayPath(loc.substring(0, loc.lastIndexOf("/"))));
+                holder.item2.setText(app.getSourceHandle(custom.getType()).getDisplayableLocation(custom));
             }
 
             protected void cacheViews(ViewHolder holder, View v) {

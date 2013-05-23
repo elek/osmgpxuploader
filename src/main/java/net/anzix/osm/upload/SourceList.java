@@ -19,16 +19,18 @@ import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
 import net.anzix.osm.upload.data.Source;
 import net.anzix.osm.upload.data.SourceDao;
+import net.anzix.osm.upload.source.SourceHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SourceList extends ListActivity {
 
     public static final int DELETE_ID = 1;
 
-    List<Source> sources;
+    List<Item> sources = new ArrayList<Item>();
 
     CustomAdapter adapter;
 
@@ -38,18 +40,16 @@ public class SourceList extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (GpxUploadApplication) getApplication();
-        app.sync();
         setContentView(R.layout.source_list);
-        fillData();
-        setListAdapter(adapter = new CustomAdapter<Source>(this, R.layout.source_list, sources) {
+
+        setListAdapter(adapter = new CustomAdapter<Item>(this, R.layout.source_list, sources) {
             protected int getItemLayout() {
                 return R.layout.source_item;
             }
 
-            protected void fillView(Source custom, ViewHolder holder) {
-                String loc = custom.getLocation();
-                holder.item1.setText(custom.getType());
-                holder.item2.setText(custom.getLocation());
+            protected void fillView(Item custom, ViewHolder holder) {
+                holder.item1.setText(custom.handler.getName());
+                holder.item2.setText("Location: " + GpxUploadApplication.getDisplayPath(custom.source.getLocation()));
             }
 
             protected void cacheViews(ViewHolder holder, View v) {
@@ -57,6 +57,7 @@ public class SourceList extends ListActivity {
                 holder.item2 = (TextView) v.findViewById(R.id.description);
             }
         });
+        fillData();
         registerForContextMenu(getListView());
 
     }
@@ -74,7 +75,7 @@ public class SourceList extends ListActivity {
             case DELETE_ID:
                 info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 Log.e("OSM", "selected: " + info.id);
-                Source s = sources.get((int) info.id);
+                Source s = sources.get((int) info.id).source;
                 app.getDaoSession().getSourceDao().delete(s);
                 adapter.remove(s);
                 adapter.notifyDataSetChanged();
@@ -97,11 +98,8 @@ public class SourceList extends ListActivity {
         if (!super.onMenuItemSelected(featureId, item)) {
             switch (item.getItemId()) {
                 case R.id.newsource:
-                    Intent intent = new Intent(getBaseContext(), FileDialog.class);
-                    intent.putExtra(FileDialog.START_PATH, "/sdcard");
-                    intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
-                    intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);
-                    startActivityForResult(intent, 1);
+                    Intent i = new Intent(this, SourceChooser.class);
+                    startActivityForResult(i, 0);
                     return true;
 
             }
@@ -112,27 +110,6 @@ public class SourceList extends ListActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
-            File f = new File(filePath);
-            if (!f.isDirectory()) {
-                Toast.makeText(this, "It's a file and not a directory!", Toast.LENGTH_SHORT);
-            }
-            if (f.exists()) {
-                Source s = new Source();
-                s.setType("dir");
-                String loc = f.getAbsolutePath();
-                try {
-                    loc = f.getCanonicalPath();
-                } catch (IOException e) {
-                    Log.e("OSM", "Can't get canonical path ", e);
-                }
-                s.setLocation(loc);
-                app.getDaoSession().getSourceDao().insert(s);
-                adapter.add(s);
-                app.syncNeeded = true;
-            }
-        }
         fillData();
         adapter.notifyDataSetChanged();
     }
@@ -140,7 +117,22 @@ public class SourceList extends ListActivity {
     private void fillData() {
         GpxUploadApplication app = (GpxUploadApplication) getApplication();
         SourceDao dao = app.getDaoSession().getSourceDao();
-        sources = dao.queryBuilder().list();
+        adapter.clear();
+        for (Source s : dao.queryBuilder().list()) {
+            adapter.add(new Item(s, app.getSourceHandle(s.getType())));
+        }
 
+        adapter.notifyDataSetChanged();
+
+    }
+
+    private class Item {
+        public Source source;
+        public SourceHandler handler;
+
+        private Item(Source source, SourceHandler handler) {
+            this.source = source;
+            this.handler = handler;
+        }
     }
 }

@@ -10,6 +10,6 @@
               android:layout_height="wrap_content"
               android:layout_margin="8dp"
               android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-              android:text="Use 'New source' menu to define location your of GPX files." />
+              android:text="Use 'New source' menu to define location of your GPX files." />
 
 </LinearLayout>

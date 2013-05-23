@@ -1,20 +1,19 @@
 package net.anzix.osm.upload;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Date;
 
 import net.anzix.osm.upload.data.DaoSession;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
+import net.anzix.osm.upload.source.SourceHandler;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -47,11 +46,14 @@ public class UploadForm extends Activity implements OnClickListener {
     private static final int MENU_SETTINGS = 1;
     Uri uri;
     private SharedPreferences preferences;
-    private File file;
+
     private int REQUEST_SAVE = 2;
     private TextView fileName;
     private Button upload;
     private EditText description;
+    private Gpx gpx;
+    private GpxUploadApplication app;
+    private Spinner visibilitySpinner;
 
     /**
      * Called when the activity is first created.
@@ -63,6 +65,7 @@ public class UploadForm extends Activity implements OnClickListener {
 
         upload = (Button) findViewById(R.id.upload);
         description = (EditText) findViewById(R.id.description);
+        app = (GpxUploadApplication) getApplication();
 
         upload.setOnClickListener(new OnClickListener() {
 
@@ -71,7 +74,7 @@ public class UploadForm extends Activity implements OnClickListener {
                 if (description.getText() == null || description.getText().toString().length() == 0) {
                     toast("Please define a description.");
                 } else {
-                    new UploadTask().execute(new File[]{file});
+                    new UploadTask().execute(gpx);
                 }
 
             }
@@ -95,40 +98,46 @@ public class UploadForm extends Activity implements OnClickListener {
         fileName = (TextView) findViewById(R.id.file_name);
 
         if (getIntent() != null && getIntent().getExtras() != null) {
-            uri = (Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM);
-            String openIntent = "/mimetype/";
-            Log.i(getClass().getName(), uri.getPath());
-            if (uri.getPath().startsWith(openIntent)) {
-                setFile(new File(uri.getPath().substring(openIntent.length())));
+            long id = getIntent().getExtras().getLong("id", -1);
+            if (id != -1) {
+                gpx = app.getDaoSession().getGpxDao().load(id);
+                fileName.setText(gpx.getLocation());
+                upload.setEnabled(true);
+                ((Button) findViewById(R.id.choose_file)).setVisibility(View.INVISIBLE);
+
             } else {
-                setFile(new File(uri.getPath()));
+                gpx = new Gpx();
+                gpx.setType("dir");
+                uri = (Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM);
+                String openIntent = "/mimetype/";
+                Log.i(getClass().getName(), uri.getPath());
+                if (uri.getPath().startsWith(openIntent)) {
+                    gpx.setLocation(new File(uri.getPath().substring(openIntent.length())).getAbsolutePath());
+                } else {
+                    gpx.setLocation(new File(uri.getPath()).getAbsolutePath());
+                }
+                upload.setEnabled(true);
+                fileName.setText(gpx.getLocation());
             }
-            setFile(file);
 
         }
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String userName = preferences
-                .getString(Preferences.OSM_USER_NAME, null);
+        String userName = preferences.getString(Preferences.OSM_USER_NAME, null);
         if (userName == null || userName.length() == 0) {
             showDialog(1);
         }
+        visibilitySpinner = (Spinner) findViewById(R.id.visibility);
 
-        Spinner s = (Spinner) findViewById(R.id.visibility);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
-                R.array.visibility, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.visibility, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
-        s.setSelection(0);
+        visibilitySpinner.setAdapter(adapter);
+        int visibility = preferences.getInt(Preferences.DEFAULT_VISIBILITY, 0);
+        visibilitySpinner.setSelection(visibility);
+
 
     }
 
-    public void setFile(File file) {
-        fileName.setText(file.getName());
-        upload.setEnabled(true);
-        this.file = file;
-
-    }
 
     @Override
     public synchronized void onActivityResult(final int requestCode,
@@ -138,9 +147,13 @@ public class UploadForm extends Activity implements OnClickListener {
             String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
             if (filePath == null)
                 return;
-            setFile(new File(filePath));
-            Log.d(getClass().getName(),
-                    "new file path " + file.getAbsolutePath());
+            gpx = new Gpx();
+            gpx.setType("dir");
+            gpx.setLocation(filePath);
+            upload.setEnabled(true);
+            fileName.setText(gpx.getLocation());
+
+            Log.d(getClass().getName(), "new file path " + filePath);
         } else {
             Log.w(getClass().getName(), "activity returns with " + resultCode);
         }
@@ -171,11 +184,11 @@ public class UploadForm extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        new UploadTask().execute(new File[]{file});
+        new UploadTask().execute(gpx);
 
     }
 
-    private class UploadTask extends AsyncTask<File, Integer, String> {
+    private class UploadTask extends AsyncTask<Gpx, Integer, String> {
         ProgressDialog dialog;
 
         @Override
@@ -197,29 +210,30 @@ public class UploadForm extends Activity implements OnClickListener {
         }
 
         @Override
-        protected String doInBackground(File... files) {
-            File file = files[0];
-            if (!file.exists()) {
-                return "ERROR: " + file.getAbsolutePath() + " does not exist.";
+        protected String doInBackground(Gpx... files) {
 
-            }
             try {
-
+                SourceHandler sh = app.getSourceHandle(files[0].getType());
                 DefaultHttpClient httpClient = new DefaultHttpClient();
-                HttpPost postRequest = new HttpPost(
-                        "http://api.openstreetmap.org/api/0.6/gpx/create");
-                MultipartEntity reqEntity = new MultipartEntity(
-                        HttpMultipartMode.BROWSER_COMPATIBLE);
-                reqEntity.addPart("file", new FileBody(file));
+                HttpPost postRequest = new HttpPost("http://api.openstreetmap.org/api/0.6/gpx/create");
+                MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+                InputStream s = sh.createStream(files[0]);
+                reqEntity.addPart("file", new InputStreamBody(s, files[0].getName()));
                 reqEntity.addPart("description", new StringBody(
                         ((TextView) findViewById(R.id.description)).getText()
                                 .toString()));
                 reqEntity.addPart("tags", new StringBody(
                         ((TextView) findViewById(R.id.tags)).getText()
                                 .toString()));
-                reqEntity.addPart("visibility", new StringBody(
-                        ((Spinner) findViewById(R.id.visibility))
-                                .getSelectedItem().toString()));
+                String visibility = visibilitySpinner.getSelectedItem().toString();
+                try {
+                    SharedPreferences.Editor prefEditor = preferences.edit();
+                    prefEditor.putInt(Preferences.DEFAULT_VISIBILITY, visibilitySpinner.getSelectedItemPosition());
+                    prefEditor.commit();
+                } catch (Exception ex) {
+                    Log.e("osm", "Can't save the visibility ", ex);
+                }
+                reqEntity.addPart("visibility", new StringBody(visibility));
 
                 UsernamePasswordCredentials creds = new UsernamePasswordCredentials(
                         preferences.getString(Preferences.OSM_USER_NAME, ""),
@@ -233,40 +247,34 @@ public class UploadForm extends Activity implements OnClickListener {
                         new InputStreamReader(
                                 response.getEntity().getContent(), "UTF-8"));
                 String sResponse;
-                StringBuilder s = new StringBuilder();
+                StringBuilder str = new StringBuilder();
 
                 while ((sResponse = reader.readLine()) != null) {
-                    s = s.append(sResponse);
+                    str.append(sResponse);
                 }
                 if (response.getStatusLine().getStatusCode() == 200) {
                     GpxUploadApplication app = (GpxUploadApplication) getApplication();
                     DaoSession session = app.getDaoSession();
-                    String path;
-                    try {
-                        path = file.getCanonicalPath();
-                    } catch (IOException e) {
-                        Log.e("OSM", "Can't get canonical path ", e);
-                        path = file.getAbsolutePath();
-                    }
-                    Gpx gpx = session.getGpxDao().queryBuilder().where(GpxDao.Properties.Location.eq(path)).build().unique();
-                    if (gpx != null) {
-                        gpx.setUploaded(new Date());
-                        session.update(gpx);
+                    String path = gpx.getLocation();
+
+                    Gpx ngpx = session.getGpxDao().queryBuilder().where(GpxDao.Properties.Location.eq(path)).build().unique();
+                    if (ngpx != null) {
+                        ngpx.setUploaded(new Date());
+                        session.update(ngpx);
                     } else {
-                        gpx = new Gpx();
-                        gpx.setType("single");
-                        gpx.setLocation(path);
-                        gpx.setUploaded(new Date());
-                        session.insert(gpx);
+                        ngpx = new Gpx();
+                        ngpx.setType("dir");
+                        ngpx.setLocation(path);
+                        ngpx.setCreated(new Date(new File(path).lastModified()));
+                        ngpx.setUploaded(new Date());
+                        session.insert(ngpx);
                     }
                     app.syncNeeded = true;
                     return "File uploaded sucessfully";
                 } else {
-                    return "ERROR: " + s + " "
-                            + response.getStatusLine().getStatusCode();
+                    return "ERROR: " + str + " " + response.getStatusLine().getStatusCode();
                 }
             } catch (Exception e) {
-
                 Log.e(e.getClass().getName(), e.getMessage(), e);
                 return "ERROR: " + e.getMessage();
 

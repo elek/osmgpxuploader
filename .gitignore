@@ -7,3 +7,6 @@ gen
 build
 .idea
 *.iml
+*.ipr
+*.iws
+build.properties

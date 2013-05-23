@@ -10,6 +10,8 @@ public class Preferences extends PreferenceActivity {
 
     public static final String OSM_PASSWORD = "osm_password";
     public static final String OSM_USER_NAME = "osm_user_name";
+    public static final String DEFAULT_VISIBILITY = "osm_visibility";
+
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {

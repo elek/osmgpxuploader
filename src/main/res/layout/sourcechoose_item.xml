@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Directory reader"/>
+                android:text="Name"/>
 
         <TextView
                 android:id="@+id/description"
@@ -31,7 +31,7 @@
                 android:layout_alignLeft="@id/name"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:maxLines="4"
-                android:text="Location: Locus/export"/>
+                android:text="Summary"/>
 
     </RelativeLayout>
 </LinearLayout>

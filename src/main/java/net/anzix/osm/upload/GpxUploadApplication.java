@@ -7,13 +7,13 @@ import net.anzix.osm.upload.data.DaoMaster;
 import net.anzix.osm.upload.data.DaoSession;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.Source;
+import net.anzix.osm.upload.source.DirSource;
+import net.anzix.osm.upload.source.SourceHandler;
+import net.anzix.osm.upload.source.SygicSource;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class GpxUploadApplication extends Application {
@@ -22,16 +22,20 @@ public class GpxUploadApplication extends Application {
 
     DaoSession daoSession;
 
-    private List<DirSource> sources = new ArrayList<DirSource>();
+    private Map<String, SourceHandler> sourceHandlers = new HashMap<String, SourceHandler>();
+
+    private List<Source> sources = new ArrayList<Source>();
 
     public boolean syncNeeded = false;
 
-    String sdCardPath;
+    static String sdCardPath;
 
     @Override
     public void onCreate() {
         super.onCreate();
         SQLiteDatabase db = new DaoMaster.DevOpenHelper(this, "notes-db", null).getWritableDatabase();
+        addSourceHandler(new SygicSource());
+        addSourceHandler(new DirSource());
 
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
@@ -41,7 +45,11 @@ public class GpxUploadApplication extends Application {
         }
     }
 
-    public String getNormalPath(File file) {
+    private void addSourceHandler(SourceHandler s) {
+        sourceHandlers.put(s.getKey(), s);
+    }
+
+    public static String getNormalPath(File file) {
         try {
             return file.getCanonicalPath();
         } catch (IOException e) {
@@ -50,26 +58,25 @@ public class GpxUploadApplication extends Application {
         }
     }
 
-    public String getDisplayPath(String path) {
+    public static String getDisplayPath(String path) {
         if (sdCardPath != null) {
-            return path.replaceAll(sdCardPath, "");
+            return path.replaceAll(sdCardPath, "").substring(1);
         }
         return path;
     }
 
     public void sync() {
         sources.clear();
-        for (Source source : daoSession.getSourceDao().queryBuilder().list()) {
-            sources.add(new DirSource(source));
-        }
+        sources = daoSession.getSourceDao().queryBuilder().list();
 
         Map<String, Gpx> gpxes = new HashMap<String, Gpx>();
         for (Gpx gpx : daoSession.getGpxDao().queryBuilder().list()) {
             gpxes.put(gpx.getLocation(), gpx);
         }
 
-        for (DirSource source : sources) {
-            for (Gpx gpx : source.getGpxFiles()) {
+        for (Source source : sources) {
+            SourceHandler handler = sourceHandlers.get(source.getType());
+            for (Gpx gpx : handler.getGpxFiles(source)) {
                 if (!gpxes.containsKey(gpx.getLocation())) {
                     daoSession.getGpxDao().insert(gpx);
                 } else {
@@ -100,5 +107,13 @@ public class GpxUploadApplication extends Application {
 
     public void setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
+    }
+
+    public Collection<SourceHandler> getSourceHandlers() {
+        return sourceHandlers.values();
+    }
+
+    public SourceHandler getSourceHandle(String type) {
+        return sourceHandlers.get(type);
     }
 }

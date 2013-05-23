@@ -8,10 +8,10 @@
             android:id="@+id/sources"
             android:title="Manage sources"
             />
-    <!--<item-->
-            <!--android:id="@+id/delete_all"-->
-            <!--android:title="Delete All"-->
-            <!--android:showAsAction="ifRoom|withText"/>-->
+    <item
+            android:id="@+id/delete_all"
+            android:title="Delete All"
+            android:showAsAction="ifRoom|withText"/>
     <item
             android:id="@+id/preferences"
             android:title="Preferences"/>
