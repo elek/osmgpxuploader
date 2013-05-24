@@ -60,7 +60,7 @@ public class GpxUploadApplication extends Application {
 
     public static String getDisplayPath(String path) {
         if (sdCardPath != null) {
-            return path.replaceAll(sdCardPath, "").substring(1);
+            return path.replaceAll(sdCardPath + "/", "");
         }
         return path;
     }

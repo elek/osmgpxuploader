@@ -17,8 +17,8 @@ public class SygicParserTest {
         SygicGpxConverter conv = new SygicGpxConverter(new SygicParser("src/test/resources/130520_092450.log"));
         InputStream is = conv;
         int c;
-        while ((c = is.read()) != -1){
-            System.out.print((char)c);
+        while ((c = is.read()) != -1) {
+            System.out.print((char) c);
         }
 
 

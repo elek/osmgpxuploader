@@ -3,15 +3,18 @@
     <item
             android:id="@+id/upload"
             android:title="Upload file"
+            android:icon="@drawable/av_upload"
+            android:showAsAction="ifRoom"
             />
     <item
             android:id="@+id/sources"
             android:title="Manage sources"
+            android:icon="@drawable/device_access_storage"
+            android:showAsAction="ifRoom"
             />
     <item
             android:id="@+id/delete_all"
-            android:title="Delete All"
-            android:showAsAction="ifRoom|withText"/>
+            android:title="Delete All"/>
     <item
             android:id="@+id/preferences"
             android:title="Preferences"/>

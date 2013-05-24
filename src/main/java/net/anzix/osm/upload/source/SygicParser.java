@@ -8,8 +8,6 @@ import java.util.Date;
 
 /**
  * Stateful parser to read Sygic aura log files.
- *
- *
  */
 public class SygicParser {
     private SimpleDateFormat format = new SimpleDateFormat("yyMMdd_HHssmm");
@@ -28,6 +26,8 @@ public class SygicParser {
     public SygicParser(String file) {
         this.file = file;
     }
+
+
 
     public void readHeader() throws IOException, ParseException {
         fis = new SygicInputStream(new File(file));
@@ -91,5 +91,17 @@ public class SygicParser {
     public String getCurrentDateStr() {
         String res = XML_DATE_FORMAT.format(getCurrentDate());
         return new StringBuilder(res).insert(res.length() - 2, ":").toString();
+    }
+
+    public long getCurrentLat() {
+        return currentLat;
+    }
+
+    public long getCurrentLon() {
+        return currentLon;
+    }
+
+    public long getCurrentTime() {
+        return currentTime;
     }
 }
