@@ -9,7 +9,6 @@ buildscript {
 
 
 apply plugin: 'android'
-apply plugin: 'idea'
 
 ext.keyConfig='/home/eszti/android.gradle'
 if (file(keyConfig).exists()) {
@@ -37,43 +36,3 @@ android {
         targetSdkVersion 16
     }
 }
-
-task xtest << {
-   project.configurations.compile.files.each {e -> println e}
-
-}
-
-task xxx << {
-   println "xxx"
-}
-
-
-//yyy.dependsOn xxx
-//println compileRelease
-
-
-
-project.ideaModule {
-            module.conventionMapping.sourceDirs = { project.sourceSets.main.allSource.srcDirs as LinkedHashSet }
-            module.conventionMapping.testSourceDirs = { project.sourceSets.test.allSource.srcDirs as LinkedHashSet }
-            def configurations = project.configurations
-            module.scopes = [
-                    PROVIDED: [plus: [], minus: []],
-                    COMPILE: [plus: [configurations.compile], minus: []],
-                    RUNTIME: [plus: [], minus: []],
-                    TEST: [plus: [configurations.testCompile], minus: []]
-            ]
-	        module.conventionMapping.singleEntryLibraries = {
-                [
-                        RUNTIME: project.sourceSets.main.output.dirs,
-                        TEST: project.sourceSets.test.output.dirs
-                ]
-		    }
-            dependsOn {
-                project.sourceSets.main.output.dirs + project.sourceSets.test.output.dirs
-            }
-        }
-
-//ideaModule.scopes.each {e -> println e}
-
-
