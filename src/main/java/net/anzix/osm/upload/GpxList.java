@@ -1,7 +1,10 @@
 package net.anzix.osm.upload;
 
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ public class GpxList extends ListActivity {
     List<Gpx> gpxes;
     CustomAdapter adapter;
     GpxUploadApplication app;
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,26 @@ public class GpxList extends ListActivity {
 
         registerForContextMenu(getListView());
 
+        receiver = new InsertReceiver();
+        IntentFilter filter = new IntentFilter(Constants.BROADCAST_INSERTED);
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+        registerReceiver(receiver, filter);
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+    private class InsertReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            fillData();
+        }
     }
 
     @Override

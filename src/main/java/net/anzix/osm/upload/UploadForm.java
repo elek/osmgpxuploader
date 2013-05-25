@@ -6,6 +6,7 @@ import java.util.Date;
 import net.anzix.osm.upload.data.DaoSession;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
+import net.anzix.osm.upload.service.Uploader;
 import net.anzix.osm.upload.source.SourceHandler;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -42,7 +43,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UploadForm extends Activity implements OnClickListener {
+public class UploadForm extends Activity {
     private static final int MENU_SETTINGS = 1;
     Uri uri;
     private SharedPreferences preferences;
@@ -51,6 +52,7 @@ public class UploadForm extends Activity implements OnClickListener {
     private TextView fileName;
     private Button upload;
     private EditText description;
+    private EditText tags;
     private Gpx gpx;
     private GpxUploadApplication app;
     private Spinner visibilitySpinner;
@@ -65,6 +67,7 @@ public class UploadForm extends Activity implements OnClickListener {
 
         upload = (Button) findViewById(R.id.upload);
         description = (EditText) findViewById(R.id.description);
+        tags = (EditText) findViewById(R.id.tags);
         app = (GpxUploadApplication) getApplication();
 
         upload.setOnClickListener(new OnClickListener() {
@@ -74,7 +77,7 @@ public class UploadForm extends Activity implements OnClickListener {
                 if (description.getText() == null || description.getText().toString().length() == 0) {
                     toast("Please define a description.");
                 } else {
-                    new UploadTask().execute(gpx);
+                    upload(gpx);
                 }
 
             }
@@ -182,106 +185,29 @@ public class UploadForm extends Activity implements OnClickListener {
         toast.show();
     }
 
-    @Override
-    public void onClick(View v) {
-        new UploadTask().execute(gpx);
+
+    public void upload(Gpx gpx) {
+        String visibility = visibilitySpinner.getSelectedItem().toString();
+        try {
+            SharedPreferences.Editor prefEditor = preferences.edit();
+            prefEditor.putInt(Preferences.DEFAULT_VISIBILITY, visibilitySpinner.getSelectedItemPosition());
+            prefEditor.commit();
+        } catch (Exception ex) {
+            Log.e("osm", "Can't save the visibility ", ex);
+        }
+        Intent i = new Intent(this, Uploader.class);
+        i.putExtra(Uploader.FILE_PATH, gpx.getLocation());
+        i.putExtra(Uploader.VISIBILITY, visibility);
+        i.putExtra(Uploader.DESCRIPTION, description.getText().toString());
+        i.putExtra(Uploader.TAGS, tags.getText().toString());
+        i.putExtra(Uploader.GPX_ID, gpx.getId());
+        i.putExtra(Uploader.TYPE, gpx.getType());
+        startService(i);
+        toast("Upload has been start. Check the notification...");
+        finish();
 
     }
 
-    private class UploadTask extends AsyncTask<Gpx, Integer, String> {
-        ProgressDialog dialog;
-
-        @Override
-        protected void onPreExecute() {
-            dialog = ProgressDialog.show(UploadForm.this, "",
-                    "Uploading. Please wait...", true);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (dialog != null) {
-                dialog.cancel();
-                dialog = null;
-            }
-            toast(result);
-            finish();
-
-        }
-
-        @Override
-        protected String doInBackground(Gpx... files) {
-
-            try {
-                SourceHandler sh = app.getSourceHandle(files[0].getType());
-                DefaultHttpClient httpClient = new DefaultHttpClient();
-                HttpPost postRequest = new HttpPost("http://api.openstreetmap.org/api/0.6/gpx/create");
-                MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-                InputStream s = sh.createStream(files[0]);
-                reqEntity.addPart("file", new InputStreamBody(s, files[0].getName()));
-                reqEntity.addPart("description", new StringBody(
-                        ((TextView) findViewById(R.id.description)).getText()
-                                .toString()));
-                reqEntity.addPart("tags", new StringBody(
-                        ((TextView) findViewById(R.id.tags)).getText()
-                                .toString()));
-                String visibility = visibilitySpinner.getSelectedItem().toString();
-                try {
-                    SharedPreferences.Editor prefEditor = preferences.edit();
-                    prefEditor.putInt(Preferences.DEFAULT_VISIBILITY, visibilitySpinner.getSelectedItemPosition());
-                    prefEditor.commit();
-                } catch (Exception ex) {
-                    Log.e("osm", "Can't save the visibility ", ex);
-                }
-                reqEntity.addPart("visibility", new StringBody(visibility));
-
-                UsernamePasswordCredentials creds = new UsernamePasswordCredentials(
-                        preferences.getString(Preferences.OSM_USER_NAME, ""),
-                        preferences.getString(Preferences.OSM_PASSWORD, ""));
-                postRequest.addHeader(BasicScheme.authenticate(creds,
-                        "US_ASCII", false));
-                postRequest.setEntity(reqEntity);
-
-                HttpResponse response = httpClient.execute(postRequest);
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(
-                                response.getEntity().getContent(), "UTF-8"));
-                String sResponse;
-                StringBuilder str = new StringBuilder();
-
-                while ((sResponse = reader.readLine()) != null) {
-                    str.append(sResponse);
-                }
-                if (response.getStatusLine().getStatusCode() == 200) {
-                    GpxUploadApplication app = (GpxUploadApplication) getApplication();
-                    DaoSession session = app.getDaoSession();
-                    String path = gpx.getLocation();
-
-                    Gpx ngpx = session.getGpxDao().queryBuilder().where(GpxDao.Properties.Location.eq(path)).build().unique();
-                    if (ngpx != null) {
-                        ngpx.setUploaded(new Date());
-                        session.update(ngpx);
-                    } else {
-                        ngpx = new Gpx();
-                        ngpx.setType("dir");
-                        ngpx.setLocation(path);
-                        ngpx.setCreated(new Date(new File(path).lastModified()));
-                        ngpx.setUploaded(new Date());
-                        session.insert(ngpx);
-                    }
-                    app.syncNeeded = true;
-                    return "File uploaded sucessfully";
-                } else {
-                    return "ERROR: " + str + " " + response.getStatusLine().getStatusCode();
-                }
-            } catch (Exception e) {
-                Log.e(e.getClass().getName(), e.getMessage(), e);
-                return "ERROR: " + e.getMessage();
-
-            }
-        }
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -304,3 +230,4 @@ public class UploadForm extends Activity implements OnClickListener {
     }
 
 }
+

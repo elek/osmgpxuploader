@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'android'
 
-ext.keyConfig='/home/eszti/android.gradle'
+ext.keyConfig=System.properties['user.home'] + '/android.gradle'
 if (file(keyConfig).exists()) {
    apply from: ext.keyConfig
 }
@@ -25,6 +25,7 @@ android {
 }
 dependencies {
    compile fileTree(dir: 'libs', include: '*.jar')
+   compile files(sdkdir + 'extras/android/support/v13/android-support-v13.jar')
 }
 
 android {

@@ -7,8 +7,8 @@ apply from: file('dependencies.gradle');
 sourceSets.main.java.srcDirs './build/source/r/debug/'
 
 dependencies {
-   compile 'org.robolectric:robolectric:2.0'
-   compile files(System.properties['user.home'] + '/prog/android-sdk-linux/platforms/android-17/android.jar')
+   testCompile 'org.robolectric:robolectric:2.0'
+   compile files(sdkdir + '/platforms/android-17/android.jar')
    testCompile 'junit:junit:4.11'
 }
 

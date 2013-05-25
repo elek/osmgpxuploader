@@ -3,6 +3,8 @@ repositories {
 }
 dependencies {
    compile fileTree(dir: 'libs', include: '*.jar')
+   compile files(sdkdir + '/extras/android/support/v13/android-support-v13.jar')
+
 }
 
 
