@@ -39,8 +39,12 @@ public abstract class CustomAdapter<T> extends BaseAdapter {
         entries.add(item);
     }
 
-    public void remove(T s) {
-        entries.remove(s);
+    public boolean remove(T s) {
+        return entries.remove(s);
+    }
+
+    public void remove(int idx) {
+        entries.remove(idx);
     }
 
     public static class ViewHolder {
@@ -63,12 +67,6 @@ public abstract class CustomAdapter<T> extends BaseAdapter {
     @Override
     public long getItemId(int i) {
         return i;
-    }
-
-    @Override
-    public boolean hasStableIds()
-    {
-        return true;
     }
 
     @Override

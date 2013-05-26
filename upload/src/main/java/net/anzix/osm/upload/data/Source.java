@@ -63,4 +63,20 @@ public class Source {
         this.parameters = parameters;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Source source = (Source) o;
+
+        if (id != null ? !id.equals(source.id) : source.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

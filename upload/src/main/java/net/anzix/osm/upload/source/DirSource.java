@@ -20,22 +20,24 @@ public class DirSource implements SourceHandler {
 
     public List<Gpx> getGpxFiles(Source source) {
         List<Gpx> result = new ArrayList<Gpx>();
-        for (File f : new File(source.getLocation()).listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File file, String s) {
-                return s.endsWith(".gpx") || s.endsWith(".GPX");
+        if (source != null && source.getLocation() != null) {
+            for (File f : new File(source.getLocation()).listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File file, String s) {
+                    return s.endsWith(".gpx") || s.endsWith(".GPX");
+                }
+            })) {
+                Gpx g = new Gpx();
+                g.setType(source.getType());
+                g.setCreated(new Date(f.lastModified()));
+                try {
+                    g.setLocation(f.getCanonicalPath());
+                } catch (IOException e) {
+                    Log.e("OSM", "Can't get canonical path ", e);
+                    g.setLocation(f.getAbsolutePath());
+                }
+                result.add(g);
             }
-        })) {
-            Gpx g = new Gpx();
-            g.setType(source.getType());
-            g.setCreated(new Date(f.lastModified()));
-            try {
-                g.setLocation(f.getCanonicalPath());
-            } catch (IOException e) {
-                Log.e("OSM", "Can't get canonical path ", e);
-                g.setLocation(f.getAbsolutePath());
-            }
-            result.add(g);
         }
         return result;
     }

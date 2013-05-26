@@ -80,8 +80,8 @@ public class SourceList extends SherlockListActivity {
                 Log.e("OSM", "selected: " + info.id);
                 Source s = sources.get((int) info.id).source;
                 app.getDaoSession().getSourceDao().delete(s);
-                adapter.remove(s);
-                adapter.notifyDataSetChanged();
+                fillData();
+                adapter.notifyDataSetInvalidated();
                 app.syncNeeded = true;
                 return true;
 

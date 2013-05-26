@@ -98,4 +98,21 @@ public class Gpx {
             return location;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Gpx gpx = (Gpx) o;
+
+        if (id != null ? !id.equals(gpx.id) : gpx.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }
