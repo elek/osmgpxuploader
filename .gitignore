@@ -4,6 +4,7 @@ out
 local.properties*
 bin
 gen
+target
 build
 .idea
 *.iml

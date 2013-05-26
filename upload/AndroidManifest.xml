@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:theme="@style/MyTheme" android:versionCode="5" android:versionName="1.0-SNAPSHOT" package="net.anzix.osm.upload">
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-sdk android:minSdkVersion="6" android:targetSdkVersion="17"/>
+
+
+    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name" android:name=".GpxUploadApplication">
+
+        <activity android:exported="true" android:label="OSMGpxUploader" android:name=".GpxList">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="Gpx sources" android:name=".SourceList"/>
+        <activity android:label="Where are your traces?" android:name=".SourceChooser"/>
+        <activity android:exported="true" android:label="@string/app_name" android:name=".UploadForm">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/gpx+xml"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/gpx"/>
+            </intent-filter>
+
+
+        </activity>
+
+        <activity android:name="Preferences">
+
+
+        </activity>
+        <activity android:name="FileDialog"/>
+
+        <service android:name=".service.Uploader"/>
+
+
+    </application>
+</manifest>
