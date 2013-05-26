@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.actionbarsherlock.app.SherlockListActivity;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
 import net.anzix.osm.upload.data.Source;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * Choose a source type during the source creation.
  */
-public class SourceChooser extends ListActivity {
+public class SourceChooser extends SherlockListActivity {
 
     GpxUploadApplication app;
     CustomAdapter<SourceHandler> adapter;
@@ -46,7 +47,7 @@ public class SourceChooser extends ListActivity {
         GpxUploadApplication app = (GpxUploadApplication) getApplication();
         List<SourceHandler> handlers = new ArrayList<SourceHandler>();
         handlers.addAll(app.getSourceHandlers());
-        setListAdapter(adapter = new CustomAdapter<SourceHandler>(this, R.layout.sourcechoose_list, handlers) {
+        setListAdapter(adapter = new CustomAdapter<SourceHandler>(this, handlers) {
             protected int getItemLayout() {
                 return R.layout.sourcechoose_item;
             }

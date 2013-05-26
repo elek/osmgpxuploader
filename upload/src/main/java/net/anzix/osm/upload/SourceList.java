@@ -1,5 +1,10 @@
 package net.anzix.osm.upload;
 
+import android.widget.AdapterView;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -8,13 +13,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.actionbarsherlock.app.SherlockListActivity;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
 import net.anzix.osm.upload.data.Source;
@@ -26,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SourceList extends ListActivity {
+public class SourceList extends SherlockListActivity {
 
     public static final int DELETE_ID = 1;
 
@@ -42,7 +45,7 @@ public class SourceList extends ListActivity {
         app = (GpxUploadApplication) getApplication();
         setContentView(R.layout.source_list);
 
-        setListAdapter(adapter = new CustomAdapter<Item>(this, R.layout.source_list, sources) {
+        setListAdapter(adapter = new CustomAdapter<Item>(this, sources) {
             protected int getItemLayout() {
                 return R.layout.source_item;
             }
@@ -69,7 +72,7 @@ public class SourceList extends ListActivity {
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(android.view.MenuItem item) {
         AdapterView.AdapterContextMenuInfo info;
         switch (item.getItemId()) {
             case DELETE_ID:
@@ -89,7 +92,7 @@ public class SourceList extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.sourcelist_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.sourcelist_menu, menu);
         return true;
     }
 

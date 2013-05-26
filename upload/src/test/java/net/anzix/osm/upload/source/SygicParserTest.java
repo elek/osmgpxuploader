@@ -18,7 +18,7 @@ public class SygicParserTest {
         InputStream is = conv;
         int c;
         while ((c = is.read()) != -1) {
-            System.out.print((char) c);
+            //System.out.print((char) c);
         }
 
 

@@ -5,8 +5,9 @@ import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
-public class Preferences extends PreferenceActivity {
+public class Preferences extends SherlockPreferenceActivity {
 
     public static final String OSM_PASSWORD = "osm_password";
     public static final String OSM_USER_NAME = "osm_user_name";

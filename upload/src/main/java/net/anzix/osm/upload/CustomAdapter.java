@@ -9,24 +9,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import net.anzix.osm.upload.data.Gpx;
+import net.anzix.osm.upload.data.Source;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CustomAdapter<T> extends ArrayAdapter<T> {
+public abstract class CustomAdapter<T> extends BaseAdapter {
 
     private List<T> entries;
 
-    private Activity activity;
+    private LayoutInflater vi;
 
-    ColorStateList defaultColor;
+    protected ColorStateList defaultColor;
 
-    public CustomAdapter(Activity a, int textViewResourceId, List<T> entries) {
-        super(a, textViewResourceId, entries);
+    protected CustomAdapter(Context context, List<T> entries) {
+        super();
         this.entries = entries;
-        this.activity = a;
+        vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public void clear() {
+        entries.clear();
+    }
+
+    public void add(T item) {
+        entries.add(item);
+    }
+
+    public void remove(T s) {
+        entries.remove(s);
     }
 
     public static class ViewHolder {
@@ -37,12 +51,31 @@ public abstract class CustomAdapter<T> extends ArrayAdapter<T> {
 
 
     @Override
+    public int getCount() {
+        return entries.size();
+    }
+
+    @Override
+    public T getItem(int i) {
+        return entries.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public boolean hasStableIds()
+    {
+        return true;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder holder;
         if (v == null) {
-            LayoutInflater vi =
-                    (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(getItemLayout(), null);
             holder = new ViewHolder();
             cacheViews(holder, v);

@@ -1,29 +1,31 @@
 package net.anzix.osm.upload;
 
-import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.*;
+import android.view.ContextMenu;
+import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
 
-import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 
-public class GpxList extends ListActivity {
+public class GpxList extends SherlockListActivity {
     public static final int UPLOAD_ID = 1;
     List<Gpx> gpxes;
-    CustomAdapter adapter;
+    CustomCheckableAdapter adapter;
     GpxUploadApplication app;
     BroadcastReceiver receiver;
 
@@ -42,6 +44,13 @@ public class GpxList extends ListActivity {
         IntentFilter filter = new IntentFilter(Constants.BROADCAST_INSERTED);
         filter.addCategory(Intent.CATEGORY_DEFAULT);
         registerReceiver(receiver, filter);
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.toggleChecked(i);
+                Log.d("osm", "toggle checked " + i + " " + l);
+            }
+        });
 
 
     }
@@ -61,15 +70,9 @@ public class GpxList extends ListActivity {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, UPLOAD_ID, 0, "Upload");
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.gpxlist_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.gpxlist_menu, menu);
         return true;
     }
 
@@ -85,17 +88,17 @@ public class GpxList extends ListActivity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (featureId == Window.FEATURE_CONTEXT_MENU) {
-            switch (item.getItemId()) {
-                case UPLOAD_ID:
-                    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                    Log.e("OSM", "selected: " + info.id);
-                    Gpx gpx = gpxes.get((int) info.id);
-                    Intent i = new Intent(this, UploadForm.class);
-                    i.putExtra("id", gpx.getId());
-                    startActivityForResult(i, 0);
-                    return true;
-
-            }
+//            switch (item.getItemId()) {
+//                case UPLOAD_ID:
+//                    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//                    Log.e("OSM", "selected: " + info.id);
+//                    Gpx gpx = gpxes.get((int) info.id);
+//                    Intent i = new Intent(this, UploadForm.class);
+//                    i.putExtra("id", gpx.getId());
+//                    startActivityForResult(i, 0);
+//                    return true;
+//
+//            }
         } else if (featureId == Window.FEATURE_OPTIONS_PANEL) {
             switch (item.getItemId()) {
                 case R.id.delete_all:
@@ -110,7 +113,13 @@ public class GpxList extends ListActivity {
                     startActivity(new Intent(this, Preferences.class));
                     return true;
                 case R.id.upload:
-                    startActivity(new Intent(this, UploadForm.class));
+                    Intent i = new Intent(this, UploadForm.class);
+                    if (adapter.getCheckedItems().size() > 0) {
+                        int idx = (Integer) adapter.getCheckedItems().iterator().next();
+                        Gpx gpx = (Gpx) adapter.getItem(idx);
+                        i.putExtra("id", gpx.getId());
+                    }
+                    startActivity(i);
                     return true;
             }
         }
@@ -127,7 +136,7 @@ public class GpxList extends ListActivity {
 
         GpxDao dao = app.getDaoSession().getGpxDao();
         gpxes = dao.queryBuilder().orderDesc(GpxDao.Properties.Created).orderAsc(GpxDao.Properties.Created).list();
-        setListAdapter(adapter = new CustomAdapter<Gpx>(this, R.layout.gpx_list, gpxes) {
+        setListAdapter(adapter = new CustomCheckableAdapter<Gpx>(this, gpxes) {
             protected int getItemLayout() {
                 return R.layout.gpx_item;
             }

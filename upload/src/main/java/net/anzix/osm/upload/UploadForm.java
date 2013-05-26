@@ -2,7 +2,11 @@ package net.anzix.osm.upload;
 
 import java.io.*;
 import java.util.Date;
-
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
+import com.actionbarsherlock.app.SherlockActivity;
 import net.anzix.osm.upload.data.DaoSession;
 import net.anzix.osm.upload.data.Gpx;
 import net.anzix.osm.upload.data.GpxDao;
@@ -32,8 +36,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -43,7 +45,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UploadForm extends Activity {
+public class UploadForm extends SherlockActivity {
     private static final int MENU_SETTINGS = 1;
     Uri uri;
     private SharedPreferences preferences;
