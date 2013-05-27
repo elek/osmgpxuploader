@@ -4,7 +4,7 @@
 
 	<groupId>net.anzix.android</groupId>
 	<artifactId>upload-parent</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>upload - Parent</name>
 
@@ -85,7 +85,7 @@
 			</activation>
 			<modules>
 				<module>upload</module>
-				<module>upload-it</module>
+				<!--module>upload-it</module-->
 			</modules>
 		</profile>
 		<profile>
@@ -108,6 +108,6 @@
 
   <modules>
     <module>upload</module>
-    <module>upload-it</module>
+    <!--module>upload-it</module-->
   </modules>
 </project>
