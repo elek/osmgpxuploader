@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          android:theme="@style/MyTheme"
-          android:installLocation="preferExternal"
-          android:versionCode="5"
-          android:versionName="1.0-SNAPSHOT"
-          package="net.anzix.osm.upload">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:theme="@style/MyTheme" android:versionCode="7" android:versionName="1.5" package="net.anzix.osm.upload">
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-sdk android:minSdkVersion="6" android:targetSdkVersion="17"/>
 
 
-    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name" android:name=".GpxUploadApplication">
+    <application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:name=".GpxUploadApplication">
 
         <activity android:exported="true" android:label="OSMGpxUploader" android:name=".GpxList">
             <intent-filter>
