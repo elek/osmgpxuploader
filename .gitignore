@@ -1,9 +1,11 @@
+gen-external-apklibs/
 out
 #*
 \#*\#
 local.properties*
 bin
 gen
+target
 build
 .idea
 *.iml

@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+//apply plugin: 'checkstyle'
+
+apply from: file('dependencies.gradle');
+
+sourceSets.main.java.srcDirs './build/source/r/debug/'
+
+dependencies {
+   testCompile 'org.robolectric:robolectric:2.0'
+   compile files(sdkdir + '/platforms/android-17/android.jar')
+   testCompile 'junit:junit:4.11'
+}
+
