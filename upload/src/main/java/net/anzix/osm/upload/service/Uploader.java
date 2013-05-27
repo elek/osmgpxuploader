@@ -80,11 +80,11 @@ public class Uploader extends IntentService {
                 .setSmallIcon(R.drawable.av_upload)
                 .build();
         notificationManager.notify(0, myNotification);
-        try {
+	/*        try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+	    }*/
         Gpx gpx = new Gpx();
         gpx.setLocation(intent.getStringExtra(FILE_PATH));
         gpx.setType(intent.getStringExtra(TYPE));
