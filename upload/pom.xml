@@ -100,13 +100,13 @@
                     </manifest>
                 </configuration>
                 <executions>
-                    <execution>
+                    <!--execution>
                         <id>manifestUpdate</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>manifest-update</goal>
                         </goals>
-                    </execution>
+                    </execution-->
                     <execution>
                         <id>alignApk</id>
                         <phase>package</phase>
@@ -187,13 +187,13 @@
                             </proguard>
                         </configuration>
                         <executions>
-                            <execution>
+                            <!--execution>
                                 <id>manifestUpdate</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>manifest-update</goal>
                                 </goals>
-                            </execution>
+                            </execution-->
                             <execution>
                                 <id>alignApk</id>
                                 <phase>package</phase>
