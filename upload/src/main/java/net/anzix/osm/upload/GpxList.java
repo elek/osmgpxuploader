@@ -101,11 +101,11 @@ public class GpxList extends SherlockListActivity {
 //            }
         } else if (featureId == Window.FEATURE_OPTIONS_PANEL) {
             switch (item.getItemId()) {
-                case R.id.delete_all:
+		/*                case R.id.delete_all:
                     app.getDaoSession().getGpxDao().deleteAll();
                     adapter.clear();
                     adapter.notifyDataSetChanged();
-                    return true;
+                    return true;*/
                 case R.id.sources:
                     startActivity(new Intent(this, SourceList.class));
                     return true;
