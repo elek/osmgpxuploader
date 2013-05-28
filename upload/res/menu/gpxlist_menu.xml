@@ -12,9 +12,9 @@
             android:icon="@drawable/device_access_storage"
             android:showAsAction="ifRoom"
             />
-    <item
+    <!--item
             android:id="@+id/delete_all"
-            android:title="Delete All"/>
+            android:title="Delete All"/-->
     <item
             android:id="@+id/preferences"
             android:title="Preferences"/>
