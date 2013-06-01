@@ -32,6 +32,7 @@ public class GpxList extends SherlockListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	setTheme(R.style.Theme_Sherlock);
         app = (GpxUploadApplication) getApplication();
         app.sync();
         setContentView(R.layout.gpx_list);

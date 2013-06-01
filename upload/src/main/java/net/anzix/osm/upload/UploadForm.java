@@ -65,6 +65,7 @@ public class UploadForm extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	setTheme(R.style.Theme_Sherlock);
         setContentView(R.layout.main);
 
         upload = (Button) findViewById(R.id.upload);

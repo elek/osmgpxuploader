@@ -1,0 +1,20 @@
+1.5.3 
+* FIX: force close on android 2.X devices
+* FIX: force close if sdcard is unmounted or temporary unavailable
+
+1.5 
+* Holo theme everywhere
+* GPX converter for Sygic Aura
+* selectable list of tracks
+* app could me moved to SD card
+* upload in the background
+* remember to the last used visibility parameter
+
+1.4
+* directories could be configured to list all of the gpx files and select (long press) for upload
+* upgraded directory selector
+* handle share events from more 3rd party applications
+
+1.2
+* ability to set the visibility (public/private)
+* Form validation and usability improvements

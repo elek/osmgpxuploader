@@ -3,6 +3,7 @@ package net.anzix.osm.upload;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 import net.anzix.osm.upload.data.DaoMaster;
 import net.anzix.osm.upload.data.DaoSession;
 import net.anzix.osm.upload.data.Gpx;
@@ -66,30 +67,35 @@ public class GpxUploadApplication extends Application {
     }
 
     public void sync() {
-        sources.clear();
-        sources = daoSession.getSourceDao().queryBuilder().list();
+        try {
+            sources.clear();
+            sources = daoSession.getSourceDao().queryBuilder().list();
 
-        Map<String, Gpx> gpxes = new HashMap<String, Gpx>();
-        for (Gpx gpx : daoSession.getGpxDao().queryBuilder().list()) {
-            gpxes.put(gpx.getLocation(), gpx);
-        }
+            Map<String, Gpx> gpxes = new HashMap<String, Gpx>();
+            for (Gpx gpx : daoSession.getGpxDao().queryBuilder().list()) {
+                gpxes.put(gpx.getLocation(), gpx);
+            }
 
-        for (Source source : sources) {
-            SourceHandler handler = sourceHandlers.get(source.getType());
-            for (Gpx gpx : handler.getGpxFiles(source)) {
-                if (!gpxes.containsKey(gpx.getLocation())) {
-                    daoSession.getGpxDao().insert(gpx);
-                } else {
-                    gpxes.remove(gpx.getLocation());
+            for (Source source : sources) {
+                SourceHandler handler = sourceHandlers.get(source.getType());
+                for (Gpx gpx : handler.getGpxFiles(source)) {
+                    if (!gpxes.containsKey(gpx.getLocation())) {
+                        daoSession.getGpxDao().insert(gpx);
+                    } else {
+                        gpxes.remove(gpx.getLocation());
+                    }
                 }
             }
-        }
 
-        for (String key : gpxes.keySet()) {
-            Gpx gpx = gpxes.get(key);
-            if (gpx.getUploaded() == null) {
-                daoSession.getGpxDao().delete(gpx);
+            for (String key : gpxes.keySet()) {
+                Gpx gpx = gpxes.get(key);
+                if (gpx.getUploaded() == null) {
+                    daoSession.getGpxDao().delete(gpx);
+                }
             }
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error on loading GPX file list.", Toast.LENGTH_LONG);
+            Log.e("osm", ex.getMessage(), ex);
         }
     }
 
