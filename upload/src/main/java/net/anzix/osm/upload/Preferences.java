@@ -14,11 +14,12 @@ public class Preferences extends SherlockPreferenceActivity {
     public static final String DEFAULT_VISIBILITY = "osm_visibility";
 
 
-	@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+	setTheme(R.style.Theme_Sherlock);
         super.onCreate(savedInstanceState);
-
         setPreferenceScreen(createPreferenceHierarchy());
+
     }
 
     private PreferenceScreen createPreferenceHierarchy() {

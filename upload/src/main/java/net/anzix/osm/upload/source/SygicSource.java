@@ -39,12 +39,20 @@ public class SygicSource implements SourceHandler {
 
         FileInputStream fis = null;
         byte[] sig = new byte[4];
-        for (File f : new File("/sdcard/Sygic/Res/travelbook").listFiles(new FilenameFilter() {
+        File sygicDir = new File("/sdcard/Sygic/Res/travelbook");
+        if (!sygicDir.exists()) {
+            return result;
+        }
+        File[] logFiles = sygicDir.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String s) {
                 return s.endsWith(".log");
             }
-        })) {
+        });
+        if (logFiles == null) {
+            return result;
+        }
+        for (File f : logFiles) {
             try {
                 fis = new FileInputStream(f);
                 fis.read(sig);

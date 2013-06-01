@@ -20,24 +20,35 @@ public class DirSource implements SourceHandler {
 
     public List<Gpx> getGpxFiles(Source source) {
         List<Gpx> result = new ArrayList<Gpx>();
-        if (source != null && source.getLocation() != null) {
-            for (File f : new File(source.getLocation()).listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File file, String s) {
-                    return s.endsWith(".gpx") || s.endsWith(".GPX");
-                }
-            })) {
-                Gpx g = new Gpx();
-                g.setType(source.getType());
-                g.setCreated(new Date(f.lastModified()));
-                try {
-                    g.setLocation(f.getCanonicalPath());
-                } catch (IOException e) {
-                    Log.e("OSM", "Can't get canonical path ", e);
-                    g.setLocation(f.getAbsolutePath());
-                }
-                result.add(g);
+        if (source.getLocation() == null) {
+            return result;
+        }
+        File dir = new File(source.getLocation());
+        if (!dir.exists() || !dir.isDirectory()) {
+            //sdcard umounted???
+            return result;
+
+        }
+        File[] gpxFiles = dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File file, String s) {
+                return s != null && (s.endsWith(".gpx") || s.endsWith(".GPX"));
             }
+        });
+        if (gpxFiles == null) {
+            return result;
+        }
+        for (File f : gpxFiles) {
+            Gpx g = new Gpx();
+            g.setType(source.getType());
+            g.setCreated(new Date(f.lastModified()));
+            try {
+                g.setLocation(f.getCanonicalPath());
+            } catch (IOException e) {
+                Log.e("OSM", "Can't get canonical path ", e);
+                g.setLocation(f.getAbsolutePath());
+            }
+            result.add(g);
         }
         return result;
     }

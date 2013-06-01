@@ -42,6 +42,7 @@ public class SourceList extends SherlockListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	setTheme(R.style.Theme_Sherlock);
         app = (GpxUploadApplication) getApplication();
         setContentView(R.layout.source_list);
 
