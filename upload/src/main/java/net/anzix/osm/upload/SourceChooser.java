@@ -32,6 +32,7 @@ public class SourceChooser extends SherlockListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	setTheme(R.style.Theme_Sherlock);
         app = (GpxUploadApplication) getApplication();
 
         setContentView(R.layout.sourcechoose_list);
